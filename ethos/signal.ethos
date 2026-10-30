@@ -1,14 +1,16 @@
 Signal
-[ :flow_nexus_types:[ Address Remembering Brief FlowId Request SessionId State ] ] ; imports
-[ Launch.{ Address Remembering Brief }                 ; queries: complete operations, staged runtime implementation
+[ :flow_nexus_types:[ Address Remembering Brief FlowId Request RecordHook Configuration ] ] ; imports
+[ Launch.{ Address Remembering Brief }                 ; inputs: start one declared flow
   End.FlowId
-  Send.{ Address Request }
+  Send.{ Address Request }                            ;   delivery is a later implementation boundary
   Refresh.FlowId
-  Hook.{ FlowId Option<SessionId> State } ]
-[ Launched.FlowId                                     ; responses: private request ids never appear
-  Ended Delivered Queued Started.FlowId Refreshed.FlowId Recorded
-  Refused.[ NoCapsule RouteClosed AddressBusy
+  Hook.RecordHook
+  Configure.Configuration ]                           ;   ordinary bootstrap, only while first-Configure permits
+[ Launched.FlowId                                     ; outputs: no private request or delivery identities
+  Ended Delivered Queued Started.FlowId Refreshed.FlowId Recorded Configured
+  Refused.[ NoCapsule RouteClosed AddressBusy           ;   typed refusal vocabulary
             UndeclaredAddress UnknownFlow
             HarnessRefused PermissionRequired
-            StoreRefused RecoveryRequired Unavailable ] ]
+            StoreRefused RecoveryRequired Unavailable
+            ConfigurationRefused ConfigureClosed ] ]
 []                                                    ; additional types
