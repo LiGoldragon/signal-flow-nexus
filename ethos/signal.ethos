@@ -1,0 +1,14 @@
+Signal
+[ :flow_nexus_types:[ Address Remembering Brief FlowId Request SessionId State ] ] ; imports
+[ Launch.{ Address Remembering Brief }                 ; queries: complete operations, staged runtime implementation
+  End.FlowId
+  Send.{ Address Request }
+  Refresh.FlowId
+  Hook.{ FlowId Option<SessionId> State } ]
+[ Launched.FlowId                                     ; responses: private request ids never appear
+  Ended Delivered Queued Started.FlowId Refreshed.FlowId Recorded
+  Refused.[ NoCapsule RouteClosed AddressBusy
+            UndeclaredAddress UnknownFlow
+            HarnessRefused PermissionRequired
+            StoreRefused RecoveryRequired Unavailable ] ]
+[]                                                    ; additional types
