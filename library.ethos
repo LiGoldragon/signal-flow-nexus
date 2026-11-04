@@ -27,6 +27,7 @@ Library
   Message.String
   MemoryRefusal.{ ComplexName Message }
   DefinitionFailure.[ Invalid.DefinitionRejection
+                      Unknown.ComplexName
                       Memory.MemoryRefusal ] ]
 []
 []

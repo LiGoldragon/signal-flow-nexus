@@ -173,5 +173,6 @@ pub struct MemoryRefusal {
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum DefinitionFailure {
     Invalid(DefinitionRejection),
+    Unknown(ComplexName),
     Memory(MemoryRefusal),
 }
