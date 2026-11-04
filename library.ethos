@@ -17,6 +17,7 @@ Library
   Complex.{ ComplexName Vector<Member> Speaker.FlowName }
   DefinitionSet.Vector<Complex>
   DefinitionRejection.[ EmptyComplexName
+                         DuplicateComplex.ComplexName
                          EmptyFlowName
                          DuplicateMember.FlowName
                          UnknownSpeaker.FlowName
