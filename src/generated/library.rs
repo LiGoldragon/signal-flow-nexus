@@ -208,6 +208,18 @@ pub struct MissingBeliefs {
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub enum RegisterFailure {
+    Refused(signal_belief_nexus::Refusal),
+    Unavailable,
+    Uncertain,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct RegisterFailed(pub RegisterFailure);
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum FurnishFailure {
     Refused(signal_belief_nexus::Refusal),
     Unavailable,
@@ -254,6 +266,7 @@ pub enum RequestFailure {
     UnsupportedHarness(UnsupportedHarness),
     UnsupportedTools(UnsupportedTools),
     MissingBeliefs(MissingBeliefs),
+    RegisterFailed(RegisterFailed),
     FurnishFailed(FurnishFailed),
     CreateFailed(CreateFailed),
     StartFailed(StartFailed),
