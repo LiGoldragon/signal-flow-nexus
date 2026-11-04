@@ -313,7 +313,7 @@ dependencies = [
 
 [[package]]
 name = "signal-flow-nexus-version-1"
-version = "1.0.0"
+version = "2.0.0"
 dependencies = [
  "datom-codec 0.32.3",
  "protos",

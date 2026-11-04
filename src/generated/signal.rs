@@ -8,7 +8,6 @@
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum Query {
-    Register(signal_belief_nexus::Repository),
     Define(signal_flow_nexus::Complex),
     Describe(signal_flow_nexus::ComplexName),
     Definitions,
@@ -18,7 +17,6 @@ pub enum Query {
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum Response {
-    Registered(signal_belief_nexus::RepositoryState),
     Defined(signal_flow_nexus::ComplexName),
     Described(signal_flow_nexus::Complex),
     Listed(std::vec::Vec<signal_flow_nexus::ComplexName>),

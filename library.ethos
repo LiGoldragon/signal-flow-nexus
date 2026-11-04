@@ -1,5 +1,5 @@
 Library
-[ signal_belief_nexus:[ ModuleName Refusal Repository RepositoryState ]
+[ signal_belief_nexus:[ ModuleName Refusal ]
   signal_herdr_nexus:[ Pane Outcome ] ]
 [ ComplexName.String
   FlowName.String
@@ -33,8 +33,6 @@ Library
   UnsupportedHarness.{ FlowName Harness }
   UnsupportedTools.{ FlowName Harness }
   MissingBeliefs.{ FlowId Vector<ModuleName> }
-  RegisterFailure.[ Refused.Refusal Unavailable Uncertain ]
-  RegisterFailed.RegisterFailure
   FurnishFailure.[ Refused.Refusal Unavailable Uncertain ]
   FurnishFailed.{ FlowId FurnishFailure }
   CreateFailed.{ FlowId Outcome }
@@ -47,7 +45,6 @@ Library
                    UnsupportedHarness
                    UnsupportedTools
                    MissingBeliefs
-                   RegisterFailed
                    FurnishFailed
                    CreateFailed
                    StartFailed
