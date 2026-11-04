@@ -171,6 +171,97 @@ pub struct MemoryRefusal {
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct FlowId(pub i64);
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct Brief(pub String);
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct LaunchRequest {
+    pub complex_name: ComplexName,
+    pub flow_name: FlowName,
+    pub brief: Brief,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct UnsupportedHarness {
+    pub flow_name: FlowName,
+    pub harness: Harness,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct UnsupportedTools {
+    pub flow_name: FlowName,
+    pub harness: Harness,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct MissingBeliefs {
+    pub flow_id: FlowId,
+    pub module_name_vector: std::vec::Vec<signal_belief_nexus::ModuleName>,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub enum FurnishFailure {
+    Refused(signal_belief_nexus::Refusal),
+    Unavailable,
+    Uncertain,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct FurnishFailed {
+    pub flow_id: FlowId,
+    pub furnish_failure: FurnishFailure,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct CreateFailed {
+    pub flow_id: FlowId,
+    pub outcome: signal_herdr_nexus::Outcome,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct StartFailed {
+    pub flow_id: FlowId,
+    pub pane: signal_herdr_nexus::Pane,
+    pub outcome: signal_herdr_nexus::Outcome,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub struct PromptFailed {
+    pub flow_id: FlowId,
+    pub pane: signal_herdr_nexus::Pane,
+    pub outcome: signal_herdr_nexus::Outcome,
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
+pub enum RequestFailure {
+    Invalid(DefinitionRejection),
+    Memory(MemoryRefusal),
+    UnknownComplex(ComplexName),
+    UnknownMember(FlowName),
+    UnsupportedHarness(UnsupportedHarness),
+    UnsupportedTools(UnsupportedTools),
+    MissingBeliefs(MissingBeliefs),
+    FurnishFailed(FurnishFailed),
+    CreateFailed(CreateFailed),
+    StartFailed(StartFailed),
+    PromptFailed(PromptFailed),
+}
+#[rustfmt::skip]
+#[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
+#[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum DefinitionFailure {
     Invalid(DefinitionRejection),
     Unknown(ComplexName),

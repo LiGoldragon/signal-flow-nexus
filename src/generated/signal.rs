@@ -11,6 +11,7 @@ pub enum Query {
     Define(signal_flow_nexus::Complex),
     Describe(signal_flow_nexus::ComplexName),
     Definitions,
+    Launch(signal_flow_nexus::LaunchRequest),
 }
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
@@ -20,4 +21,6 @@ pub enum Response {
     Described(signal_flow_nexus::Complex),
     Listed(std::vec::Vec<signal_flow_nexus::ComplexName>),
     Refused(signal_flow_nexus::DefinitionFailure),
+    Launched(signal_flow_nexus::FlowId),
+    LaunchRefused(signal_flow_nexus::RequestFailure),
 }

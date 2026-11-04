@@ -1,5 +1,6 @@
 Library
-[ signal_belief_nexus:[ ModuleName ] ]
+[ signal_belief_nexus:[ ModuleName Refusal ]
+  signal_herdr_nexus:[ Pane Outcome ] ]
 [ ComplexName.String
   FlowName.String
   ModelName.String
@@ -26,6 +27,28 @@ Library
                          DuplicateTool.{ FlowName Tool } ]
   Message.String
   MemoryRefusal.{ ComplexName Message }
+  FlowId.Integer
+  Brief.String
+  LaunchRequest.{ ComplexName FlowName Brief }
+  UnsupportedHarness.{ FlowName Harness }
+  UnsupportedTools.{ FlowName Harness }
+  MissingBeliefs.{ FlowId Vector<ModuleName> }
+  FurnishFailure.[ Refused.Refusal Unavailable Uncertain ]
+  FurnishFailed.{ FlowId FurnishFailure }
+  CreateFailed.{ FlowId Outcome }
+  StartFailed.{ FlowId Pane Outcome }
+  PromptFailed.{ FlowId Pane Outcome }
+  RequestFailure.[ Invalid.DefinitionRejection
+                   Memory.MemoryRefusal
+                   UnknownComplex.ComplexName
+                   UnknownMember.FlowName
+                   UnsupportedHarness
+                   UnsupportedTools
+                   MissingBeliefs
+                   FurnishFailed
+                   CreateFailed
+                   StartFailed
+                   PromptFailed ]
   DefinitionFailure.[ Invalid.DefinitionRejection
                       Unknown.ComplexName
                       Memory.MemoryRefusal ] ]
