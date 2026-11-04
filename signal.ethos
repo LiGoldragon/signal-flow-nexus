@@ -1,5 +1,5 @@
 Signal
-[ signal_flow_nexus:[ Complex ComplexName DefinitionFailure LaunchRequest FlowId RequestFailure ] ]
+[ signal_flow_nexus:[ Complex ComplexName LaunchRequest FlowId RequestFailure ] ]
 [ Define.Complex
   Describe.ComplexName
   Definitions
@@ -7,7 +7,6 @@ Signal
 [ Defined.ComplexName
   Described.Complex
   Listed.Vector<ComplexName>
-  Refused.DefinitionFailure
-  Launched.FlowId
-  LaunchRefused.RequestFailure ]
+  Refused.RequestFailure
+  Launched.FlowId ]
 []

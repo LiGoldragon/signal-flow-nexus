@@ -20,7 +20,6 @@ pub enum Response {
     Defined(signal_flow_nexus::ComplexName),
     Described(signal_flow_nexus::Complex),
     Listed(std::vec::Vec<signal_flow_nexus::ComplexName>),
-    Refused(signal_flow_nexus::DefinitionFailure),
+    Refused(signal_flow_nexus::RequestFailure),
     Launched(signal_flow_nexus::FlowId),
-    LaunchRefused(signal_flow_nexus::RequestFailure),
 }
