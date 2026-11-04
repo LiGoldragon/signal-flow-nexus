@@ -1,10 +1,10 @@
 Signal
-[ signal_flow_nexus:[ Complex ComplexName DefinitionSet MutationFailure ] ]
+[ signal_flow_nexus:[ Complex ComplexName DefinitionFailure ] ]
 [ Define.Complex
-  Undefine.ComplexName
-  Describe ]
+  Describe.ComplexName
+  Definitions ]
 [ Defined.ComplexName
-  Undefined.ComplexName
-  Described.Snapshot
-  Refused.MutationFailure ]
-[ Snapshot.{ DefinitionSet Vector<ComplexName> } ]
+  Described.Complex
+  Listed.Vector<ComplexName>
+  Refused.DefinitionFailure ]
+[]

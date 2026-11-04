@@ -24,12 +24,9 @@ Library
                          UnknownMemberRoute.{ FlowName FlowName }
                          ToolConflict.{ FlowName Tool }
                          DuplicateTool.{ FlowName Tool } ]
+  Message.String
   MemoryRefusal.{ ComplexName Message }
-  PersistenceFailure.{ ComplexName Message.String }
-  MutationFailure.[ Invalid.DefinitionRejection
-                    Busy.ComplexName
-                    Unknown.ComplexName
-                    Uncertain.ComplexName
-                    Unavailable.PersistenceFailure ] ]
+  DefinitionFailure.[ Invalid.DefinitionRejection
+                      Memory.MemoryRefusal ] ]
 []
 []
