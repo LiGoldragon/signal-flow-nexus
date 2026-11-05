@@ -1,12 +1,12 @@
 Signal
-[ signal_flow_nexus:[ Complex ComplexName LaunchRequest FlowId RequestFailure ] ]
-[ Define.Complex
-  Describe.ComplexName
+[ signal_flow_nexus:[ Metaflow MetaflowName LaunchRequest FlowId RequestFailure ] ]
+[ Define.Metaflow
+  Describe.MetaflowName
   Definitions
   Launch.LaunchRequest ]
-[ Defined.ComplexName
-  Described.Complex
-  Listed.Vector<ComplexName>
+[ Defined.MetaflowName
+  Described.Metaflow
+  Listed.Vector<MetaflowName>
   Refused.RequestFailure
   Launched.FlowId ]
 []

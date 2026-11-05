@@ -1,7 +1,7 @@
 Library
 [ signal_belief_nexus:[ ModuleName Refusal ]
   signal_herdr_nexus:[ Pane Outcome ] ]
-[ ComplexName.String
+[ MetaflowName.String
   FlowName.String
   ModelName.String
   Harness.[ Claude Codex ]
@@ -13,12 +13,12 @@ Library
   Tool.String
   Tools.[ HarnessDefault
           Restricted.{ Allow.Vector<Tool> Deny.Vector<Tool> } ]
-  Route.[ Speaks.FlowName Complex.ComplexName Living ]
+  Route.[ Speaks.FlowName Metaflow.MetaflowName Living ]
   Member.{ FlowName Harness ModelName Effort Continuity Workspace Beliefs Tools Vector<Route> }
-  Complex.{ ComplexName Vector<Member> Speaker.FlowName }
-  DefinitionSet.Vector<Complex>
-  DefinitionRejection.[ EmptyComplexName
-                         DuplicateComplex.ComplexName
+  Metaflow.{ MetaflowName Vector<Member> Speaker.FlowName }
+  DefinitionSet.Vector<Metaflow>
+  DefinitionRejection.[ EmptyMetaflowName
+                         DuplicateMetaflow.MetaflowName
                          EmptyFlowName
                          DuplicateMember.FlowName
                          UnknownSpeaker.FlowName
@@ -26,10 +26,10 @@ Library
                          ToolConflict.{ FlowName Tool }
                          DuplicateTool.{ FlowName Tool } ]
   Message.String
-  MemoryRefusal.{ ComplexName Message }
+  MemoryRefusal.{ MetaflowName Message }
   FlowId.Integer
   Brief.String
-  LaunchRequest.{ ComplexName FlowName Brief }
+  LaunchRequest.{ MetaflowName FlowName Brief }
   UnsupportedHarness.{ FlowName Harness }
   UnsupportedTools.{ FlowName Harness }
   MissingBeliefs.{ FlowId Vector<ModuleName> }
@@ -40,7 +40,7 @@ Library
   PromptFailed.{ FlowId Pane Outcome }
   RequestFailure.[ Invalid.DefinitionRejection
                    Memory.MemoryRefusal
-                   UnknownComplex.ComplexName
+                   UnknownMetaflow.MetaflowName
                    UnknownMember.FlowName
                    UnsupportedHarness
                    UnsupportedTools
@@ -50,7 +50,7 @@ Library
                    StartFailed
                    PromptFailed ]
   DefinitionFailure.[ Invalid.DefinitionRejection
-                      Unknown.ComplexName
+                      Unknown.MetaflowName
                       Memory.MemoryRefusal ] ]
 []
 []

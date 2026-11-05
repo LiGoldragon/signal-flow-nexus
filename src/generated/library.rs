@@ -7,7 +7,7 @@
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
-pub struct ComplexName(pub String);
+pub struct MetaflowName(pub String);
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
@@ -90,7 +90,7 @@ pub enum Tools {
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum Route {
     Speaks(FlowName),
-    Complex(ComplexName),
+    Metaflow(MetaflowName),
     Living,
 }
 #[rustfmt::skip]
@@ -114,15 +114,15 @@ pub struct Speaker(pub FlowName);
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
-pub struct Complex {
-    pub complex_name: ComplexName,
+pub struct Metaflow {
+    pub metaflow_name: MetaflowName,
     pub member_vector: std::vec::Vec<Member>,
     pub speaker: Speaker,
 }
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
-pub struct DefinitionSet(pub std::vec::Vec<Complex>);
+pub struct DefinitionSet(pub std::vec::Vec<Metaflow>);
 #[rustfmt::skip]
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
@@ -148,8 +148,8 @@ pub struct DuplicateTool_Data {
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum DefinitionRejection {
-    EmptyComplexName,
-    DuplicateComplex(ComplexName),
+    EmptyMetaflowName,
+    DuplicateMetaflow(MetaflowName),
     EmptyFlowName,
     DuplicateMember(FlowName),
     UnknownSpeaker(FlowName),
@@ -165,7 +165,7 @@ pub struct Message(pub String);
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub struct MemoryRefusal {
-    pub complex_name: ComplexName,
+    pub metaflow_name: MetaflowName,
     pub message: Message,
 }
 #[rustfmt::skip]
@@ -180,7 +180,7 @@ pub struct Brief(pub String);
 #[derive(rkyv::Archive, rkyv::Serialize, rkyv::Deserialize, Clone, Debug, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub struct LaunchRequest {
-    pub complex_name: ComplexName,
+    pub metaflow_name: MetaflowName,
     pub flow_name: FlowName,
     pub brief: Brief,
 }
@@ -249,7 +249,7 @@ pub struct PromptFailed {
 pub enum RequestFailure {
     Invalid(DefinitionRejection),
     Memory(MemoryRefusal),
-    UnknownComplex(ComplexName),
+    UnknownMetaflow(MetaflowName),
     UnknownMember(FlowName),
     UnsupportedHarness(UnsupportedHarness),
     UnsupportedTools(UnsupportedTools),
@@ -264,6 +264,6 @@ pub enum RequestFailure {
 #[cfg_attr(feature = "datom", derive(datom_codec::Datomizable, datom_codec::Composing))]
 pub enum DefinitionFailure {
     Invalid(DefinitionRejection),
-    Unknown(ComplexName),
+    Unknown(MetaflowName),
     Memory(MemoryRefusal),
 }
